@@ -5,7 +5,7 @@
 <mapper namespace="com.wuyr.dao.TeacherDao">
 
     <insert id="insertTeacher" useGeneratedKeys="true" keyProperty="teacherId" parameterType="teacher">
-        insert into teachers (teacherName,teacherJobTitle) value (#{teacherName},#{teacherJobTitle})
+        insert into teachers (teacherId,teacherName,teacherJobTitle) value (#{teacherId},#{teacherName},#{teacherJobTitle})
     </insert>
 
     <delete id="deleteTeacher" parameterType="int">

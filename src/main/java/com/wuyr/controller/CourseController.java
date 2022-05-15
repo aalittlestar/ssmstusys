@@ -7,6 +7,7 @@ import com.wuyr.pojo.RequestCourse;
 import com.wuyr.pojo.Student;
 import com.wuyr.pojo.Teacher;
 import com.wuyr.service.CourseService;
+import com.wuyr.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,9 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private TeacherService teacherService;
+
     @RequestMapping(value = "/insert",method = RequestMethod.POST)
     public String insertStudent(RequestCourse requestCourse){
 
@@ -33,11 +37,14 @@ public class CourseController {
 
         Teacher teacher = new Teacher();
         teacher.setTeacherId(requestCourse.getTeacherId());
+        teacher.setTeacherName(requestCourse.getTeacherName());
+        teacher.setTeacherJobTitle(requestCourse.getCourseName());
         course.setTeacher(teacher);
 
         course.setCourseCredit(requestCourse.getCourseCredit());
 
         courseService.insertCourse(course);
+        teacherService.insertTeacher(teacher);
 
         return "redirect:/manager/course";
     }

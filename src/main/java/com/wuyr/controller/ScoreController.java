@@ -42,14 +42,15 @@ public class ScoreController {
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
-    public String deleteStudent(@RequestParam("studentId") int studentId,@RequestParam("courseId") int courseId){
+    public String deleteStudent(@RequestParam("studentId") String studentId,@RequestParam("courseId") String courseId){
+
 
         Score score = new Score();
 
         Student student = new Student();
-        student.setStudentId(studentId);
+        student.setStudentId(Integer.valueOf(studentId));
         Course course = new Course();
-        course.setCourseId(courseId);
+        course.setCourseId(Integer.valueOf(courseId));
 
         score.setCourse(course);
         score.setStudent(student);
